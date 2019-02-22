@@ -47,14 +47,15 @@ class BiocacheService {
      * @return fields (List)
      */
     @Cacheable('longTermCache')
-    List getBiocacheFields() {
+    List getBiocacheFields()  {
         List fields
         Map resp = webService.get(grailsApplication.config.downloads.indexedFieldsUrl)
 
         if (resp?.resp) {
             fields = resp.resp
         } else {
-            throw new Exception(resp?.error)
+            String msg = "Error calling service: ${grailsApplication.config.downloads.indexedFieldsUrl}. Message: ${resp?.error}"
+            throw new RuntimeException(msg)
         }
 
         fields
