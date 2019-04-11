@@ -165,6 +165,11 @@
             }
         </g:applyCodec>
     </g:if>
+    <g:if test="${json && downloadParams?.reasonTypeId && grailsApplication.config.getProperty('downloads.gaCustomData')}">
+        <g:set var="downloadReasonCode" value="${downloads.getLoggerReasonString(id: downloadParams.reasonTypeId)}"/>
+        ga('set', 'dimension2', '${downloadParams.downloadType}');
+        ga('set', 'dimension3', '${downloadReasonCode}');
+    </g:if>
     });
 
     /**

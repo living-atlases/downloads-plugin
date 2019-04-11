@@ -89,6 +89,7 @@ downloads.dwcSchemaUrl = "https://raw.githubusercontent.com/tdwg/dwc/master/xsd/
 downloads.termsOfUseUrl = "http://www.ala.org.au/about-the-atlas/terms-of-use/#TOUusingcontent"
 downloads.defaultDownloadFormat = "dwc"
 downloads.includeRawDwcFields = "true" // keep it a string to be consistent with properties file
+downloads.gaCustomData = true  // Google Analytics custom dimensions data - set to empty for non-ALA installations
 
 doiService.baseUrl = "http://doi.ala.org.au"
 doiService.doiResolverUrl = "https://doi.org/"

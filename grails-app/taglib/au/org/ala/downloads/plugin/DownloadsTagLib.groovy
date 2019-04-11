@@ -109,6 +109,37 @@ class DownloadsTagLib {
     }
 
     /**
+     * Get the download reason "rkey" (default) or "name" for a given download reasonTypeId
+     *
+     * @attr id REQUIRED the reasonTypeId (id)
+     * @attr field the reason field to return (rkey | name)
+     */
+    def getLoggerReasonString = { attrs ->
+        def reasonsList = downloadService.getLoggerReasons()
+        def returnField = attrs.field ?: "rkey"
+        def reasonText = ""
+        def reasonIndex
+
+        try {
+            reasonIndex = attrs.id as Integer
+        } catch (NumberFormatException nfe) {
+            // just log it
+            log.warn "Couldn't convert id (${attrs.id}) to Integer in getLoggerReasonString(). ${nfe.localizedMessage}"
+        }
+
+        if (reasonIndex) {
+            Map obj = reasonsList.find { it.id == reasonIndex}
+            log.debug "getLoggerReasonString - ID: ${reasonIndex} || obj = ${obj} "
+
+            if (obj && obj.containsKey(returnField)) {
+                reasonText = obj.get(returnField)
+            }
+        }
+
+        out << reasonText
+    }
+
+    /**
      * Add extra class name if current param name & value match the provided
      * version
      *
