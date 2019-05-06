@@ -14,14 +14,14 @@
 // These are sensible defaults that are copied into the application's config object and can be overridden
 // by the client application or its external config file
 
-downloads.indexedDownloadUrl = "https://biocache.ala.org.au/ws/occurrences/offline/download"
-downloads.checklistDownloadUrl = "https://biocache.ala.org.au/ws/occurrences/facets/download"
+downloads.indexedDownloadUrl = "https://biocache-ws.ala.org.au/ws/occurrences/offline/download"
+downloads.checklistDownloadUrl = "https://biocache-ws.ala.org.au/ws/occurrences/facets/download"
 
-// For online fieldguide generation use biocache-hub webservice url e.g. http://biocache.ala.org.au/occurrences/fieldguide/download
-// For offline fieldguide generation use fieldguide url e.g. http://fieldguide.ala.org.au
+// For online fieldguide generation use biocache-hub webservice url e.g. https://biocache.ala.org.au/occurrences/fieldguide/download
+// For offline fieldguide generation use fieldguide url e.g. https://fieldguide.ala.org.au
 downloads.fieldguideDownloadUrl = "https://fieldguide.ala.org.au"
 
-downloads.indexedFieldsUrl = "https://biocache.ala.org.au/ws/index/fields"
+downloads.indexedFieldsUrl = "https://biocache-ws.ala.org.au/ws/index/fields"
 
 // The parent application should also use biocache.baseUrl, e.g. biocache-hubs
 biocache.baseUrl = "https://biocache.ala.org.au/ws"
@@ -86,10 +86,10 @@ downloads.fieldguide.species.max = 1000
 downloads.maxRecords = 1000000
 downloads.staticDownloadsUrl = "https://downloads.ala.org.au"
 downloads.dwcSchemaUrl = "https://raw.githubusercontent.com/tdwg/dwc/master/xsd/tdwg_dwcterms.xsd"
-downloads.termsOfUseUrl = "http://www.ala.org.au/about-the-atlas/terms-of-use/#TOUusingcontent"
+downloads.termsOfUseUrl = "https://www.ala.org.au/about-the-atlas/terms-of-use/#TOUusingcontent"
 downloads.defaultDownloadFormat = "dwc"
 downloads.includeRawDwcFields = "true" // keep it a string to be consistent with properties file
 downloads.gaCustomData = true  // Google Analytics custom dimensions data - set to empty for non-ALA installations
 
-doiService.baseUrl = "http://doi.ala.org.au"
+doiService.baseUrl = "https://doi.ala.org.au"
 doiService.doiResolverUrl = "https://doi.org/"
