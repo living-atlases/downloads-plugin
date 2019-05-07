@@ -9,7 +9,7 @@ class UtilityService {
     def grailsApplication, biocacheService
 
     /**
-     * Retrieve the download fields mapped to the vairous DwC classes from http://biocache.ala.org.au/ws/index/fields
+     * Retrieve the download fields mapped to the vairous DwC classes from https://biocache.ala.org.au/ws/index/fields
      *
      * @return Map<String,List> classesMap
      */
@@ -25,7 +25,7 @@ class UtilityService {
         fieldGroupMap.put("otherTraits", grailsApplication.config.downloads.otherTraits)
         fieldGroupMap.put("environmentalLayers", ["All elxxxx (environmental) fields"])
         fieldGroupMap.put("contextualLayers", ["All clxxxx (contextual) fields"])
-        fieldGroupMap.put("qualityAssertions", ["All QA fields - <a href='http://biocache.ala.org.au/ws/occurrences/search?q=*:*&facets=assertions&pageSize=0&flimit=500' target='_blank'>see the full list</a>"])
+        fieldGroupMap.put("qualityAssertions", ["All QA fields - <a href='https://biocache-ws.ala.org.au/ws/occurrences/search?q=*:*&facets=assertions&pageSize=0&flimit=500' target='_blank'>see the full list</a>"])
         fieldGroupMap.put("miscellaneousFields", ["All miscellaneous fields"])
 
         fieldGroupMap
