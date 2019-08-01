@@ -13,6 +13,7 @@
 package au.org.ala.downloads
 
 import grails.converters.JSON
+import grails.validation.Validateable
 import groovy.util.logging.Slf4j
 import org.apache.commons.lang.StringUtils
 import org.grails.web.util.WebUtils
@@ -23,7 +24,7 @@ import org.grails.web.util.WebUtils
  * @author "Nick dos Remedios <Nick.dosRemedios@csiro.au>"
  */
 @Slf4j
-class DownloadParams {
+class DownloadParams implements Validateable {
     String searchParams // q, fq and qc params as query string, URI encoded when sent from browser
     String targetUri // path to page calling the download form (so we can return to that page after download complete)
     String downloadType // records, checklist or field guide TODO put in an Enum?
