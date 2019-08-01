@@ -67,47 +67,28 @@
     list-style: disc;
 }
 
-/*.btn-white {*/
-    /*color: #333333;*/
-    /*text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);*/
-    /*background-color: #ffffff;*/
-    /*!*background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);*!*/
-    /*!*background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));*!*/
-    /*!*background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);*!*/
-    /*!*background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);*!*/
-    /*!*background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);*!*/
-    /*!*background-repeat: repeat-x;*!*/
-    /*!*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0);*!*/
-    /*border-color: #e6e6e6 #e6e6e6 #bfbfbf;*/
-    /*border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);*/
-    /**background-color: #ffffff;*/
-    /*!* Darken IE7 buttons by default so they stand out more given they won't have borders *!*/
-    /*!*filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);*!*/
-    /*border: 1px solid #cccccc;*/
-    /**border: 0;*/
-    /*border-bottom-color: #b3b3b3;*/
-    /*-webkit-border-radius: 0px;*/
-    /*-moz-border-radius: 0px;*/
-    /*border-radius: 0px;*/
-    /**margin-left: .3em;*/
-    /*!*-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);*!*/
-    /*!*-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);*!*/
-    /*!*box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);*!*/
-/*}*/
-/*.btn-white:hover,*/
-/*.btn-white:focus,*/
-/*.btn-white:active,*/
-/*.btn-white.active,*/
-/*.btn-white.disabled,*/
-/*.btn-white[disabled] {*/
-    /*color: #333333;*/
-    /*background-color: #ffffff;*/
-    /**background-color: #ffffff;*/
-/*}*/
-/*.btn-white:active,*/
-/*.btn-white.active {*/
-    /*background-color: #ffffff \9;*/
-/*}*/
+/* Colours and Swatchs
+================================= */
+.swatch-colour{height:70px;width:100%;display:block;border-bottom:1px solid #ccc;}
+.color--dark-grey{color: #9d9d9d;} .backgroundcolor--dark-grey{background-color: #9d9d9d;}
+.color--dark-red{color: #C44D34;} .backgroundcolor--dark-red{background-color: #C44D34;}
+.color--green{color: #006435;} .backgroundcolor--green{background-color: #006435;}
+.color--medium-blue{color: #2475A4;} .backgroundcolor--medium-blue{background-color: #2475A4;}
+.color--medium-grey{color: #637073;} .backgroundcolor--medium-grey{background-color: #637073;}
+.color--mellow-red{color: #DF3034;} .backgroundcolor--mellow-red{background-color: #DF3034;}
+.color--off-black{color: #212121;} .backgroundcolor--off-black{background-color: #212121;}
+.color--off-white{color: #F2F2F2;} .backgroundcolor--off-white{background-color: #F2F2F2;}
+.color--pink{color: #D0367D;} .backgroundcolor--pink{background-color: #D0367D;}
+.color--primary-red{color: #F26649;} .backgroundcolor--primary-red{background-color: #F26649;}
+.color--purple{color: #2E358B;} .backgroundcolor--purple{background-color: #2E358B;}
+.color--red{color: #B10E1E;} .backgroundcolor--red{background-color: #B10E1E;}
+.color--white{color: #fff !important;} .backgroundcolor--white{background-color: #fff;}
+.color--yellow{color: #FFBF47;} .backgroundcolor--yellow{background-color: #FFBF47;}
+.color--apple{color: #65B044;} .backgroundcolor--apple{background-color: #65B044;}
+.color--flamingo{color: #f26649;} .backgroundcolor--flamingo{background-color: #f26649;}
+.color--mojo{color: #C44D34;} .backgroundcolor--mojo{background-color: #C44D34;}
+.color-lochmara {color: #0087BE;} .background-lochmara {background-color: #0087BE;}
+.color-facebook {color: #507CBE;} .background-facebook {background-color: #507CBE;}
 
 
 .btn-bs3 {
