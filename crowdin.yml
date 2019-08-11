@@ -5,10 +5,11 @@
 #
 # To use it this, you need to configure two vars:
 #
-#   export CROWDIN_BASE_PATH=$PWD/
+#   export CROWDIN_BASE_PATH=$(dirname $PWD)
 #   export CROWDIN_API_KEY=XXXXXX
 #
 # You can get the API from https://crowdin.com/project/ala-i18n/settings#api
+# CROWDIN_BASE_PATH is the parent directory of this repository.
 #
 # After installing crowdin in your computer, to download translations from crowdin run:
 #   crowdin download
@@ -60,13 +61,13 @@ files: [
   # Source files filter
   # e.g. "/resources/en/*.json"
   #
-  "source" : "/grails-app/i18n/messages.properties",
+  "source" : "/downloads-plugin/grails-app/i18n/messages.properties",
 
   #
   # where translations live
   # e.g. "/resources/%two_letters_code%/%original_file_name%"
   #
-  "translation" : "/grails-app/i18n/messages_%locale_with_underscore%.properties",
+  "translation" : "/downloads-plugin/grails-app/i18n/messages_%locale_with_underscore%.properties",
 
   "translation_replace" : {
     "af_ZA": "af",
