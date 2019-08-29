@@ -24,6 +24,7 @@ import groovy.util.logging.Slf4j
 enum FileType {
     CSV("csv"),
     TSV("tsv"),
+    @Deprecated
     SHAPE("shapefile")
 
     String type
