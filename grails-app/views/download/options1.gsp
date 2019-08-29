@@ -127,13 +127,27 @@
                                             </label>
                                             <div class="col-sm-8 radio">
                                                 <g:each in="${au.org.ala.downloads.FileType.values()}" var="ft">
+%{--                                                %{-- Skip Shapefile type --}%
+                                                    <g:if test="${!(grailsApplication.config.getProperty("filetype.shapefile.disable") && ft.type == au.org.ala.downloads.FileType.SHAPE.type )}">
+                                                        <div class="">
+                                                            <label>
+                                                                <input id="fileType_${ft.type}" type="radio" name="fileType" class=""
+                                                                       value="${ft.type}" ${(ft.ordinal() == 0) ? 'checked' : ''}/>
+                                                                <g:message code="type.${ft.type}"/> <g:message
+                                                                        code="helpicon.${ft.type}" default=""/>
+                                                            </label>
+                                                        </div>
+                                                    </g:if>
+                                                </g:each>
+                                                <g:if test="${grailsApplication.config.getProperty("filetype.shapefile.disable")}">
+                                                    %{-- Indicate shapefile is deprecated and will be removed --}%
                                                     <div class="">
                                                         <label>
-                                                            <input id="fileType" type="radio" name="fileType" class="" value="${ft.type}" ${(ft.ordinal() == 0)?'checked':''}/>
-                                                            <g:message code="type.${ft.type}"/> <g:message code="helpicon.${ft.type}" default=""/>
+                                                            <input type="radio" name="fileType" value="shapefile" disabled="disabled" />
+                                                            <span style="opacity: 0.8;"><g:message code="type.shapefile.disabled" args="[ grailsApplication.config.getProperty('shapefile.kb.url') ]" /></span>
                                                         </label>
                                                     </div>
-                                                </g:each>
+                                                </g:if>
                                             </div>
                                         </div>
                                     </form>
