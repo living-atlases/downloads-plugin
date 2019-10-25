@@ -70,7 +70,7 @@ class DownloadParams implements Validateable {
 
     private Map mapForPropsWithExcludeList(List excludes = []) {
         Map paramsMap = [:]
-        List excludeParams = ["mapForPropsWithExcludeList", "class", "constraints", "errors", "ValidationErrors", "action", "controller", "layers"]
+        List excludeParams = ["mapForPropsWithExcludeList", "class", "constraints", "errors", "ValidationErrors", "action", "controller", "layers", "constraintsMap"] //
 
         if (excludes) {
             excludeParams.addAll(excludes)
@@ -96,7 +96,7 @@ class DownloadParams implements Validateable {
      * @return
      */
     public String biocacheDownloadParamString() {
-        Map paramsMap = mapForPropsWithExcludeList(["searchParams", "targetUri", "downloadType", "downloadFormat", "customClasses"])
+        Map paramsMap = mapForPropsWithExcludeList(["searchParams", "targetUri", "downloadType", "downloadFormat", "customClasses", "constraintsMap"])
         // space chars are removed via replaceChars, as they cause an URI exception
         String queryString = WebUtils.toQueryString(paramsMap) + "&" + StringUtils.removeStart(StringUtils.replaceChars(searchParams, " ", "+"), "?")
         queryString
