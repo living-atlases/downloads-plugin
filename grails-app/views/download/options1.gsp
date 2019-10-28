@@ -345,7 +345,7 @@
                 $(link).addClass('btn-success');
                 $(link).find('.glyphicon').show();
                 $(link).blur(); // prevent BS focus
-                console.log('link id', $(link).attr('id'), "select-${au.org.ala.downloads.DownloadType.RECORDS.type}");
+                //console.log('link id', $(link).attr('id'), "select-${au.org.ala.downloads.DownloadType.RECORDS.type}");
 
                 if ($(link).attr('id') == "select-${au.org.ala.downloads.DownloadType.RECORDS.type}") {
                     // show type options
@@ -382,7 +382,7 @@
 
         // file type change event
         $('#fileType').on('change', function(e) {
-            console.log('this selected val', $(this).find(":selected").val());
+            //console.log('this selected val', $(this).find(":selected").val());
             if ($(this).find(":selected").val()) {
                 // set focus on reason code
                 $('#downloadReason').focus();
