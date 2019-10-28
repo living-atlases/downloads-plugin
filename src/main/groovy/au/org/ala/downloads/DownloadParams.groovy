@@ -108,6 +108,6 @@ class DownloadParams implements Validateable {
      * @return Map
      */
     Map biocacheDownloadParamsMap() {
-        mapForPropsWithExcludeList(["searchParams", "targetUri", "downloadType", "downloadFormat", "customClasses"])
+        mapForPropsWithExcludeList(["searchParams", "targetUri", "downloadType", "downloadFormat", "customClasses", "constraintsMap"])
     }
 }
