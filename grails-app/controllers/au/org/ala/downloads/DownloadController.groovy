@@ -17,7 +17,6 @@ import grails.converters.JSON
 import grails.core.GrailsApplication
 import grails.web.mapping.LinkGenerator
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.web.servlet.ModelAndView
 
 /**
  * Download controller
@@ -42,6 +41,7 @@ class DownloadController {
     def options1(DownloadParams downloadParams) {
         log.debug "biocacheDownloadParamString = ${downloadParams.biocacheDownloadParamString()}"
         log.debug "request.getHeader('referer') = ${request.getHeader('referer')}"
+        log.debug "downloadParams = ${downloadParams.toString()}"
         downloadParams.file = DownloadType.RECORDS.type + "-" + new Date().format("yyyy-MM-dd")
 
         if (downloadParams.searchParams) {
@@ -108,7 +108,6 @@ class DownloadController {
             ])
         } else if (downloadParams.downloadType == DownloadType.RECORDS.type) {
             // Records download -> confirm
-
             // targetUri already contains the context path but linkGenerator does not know about it
             // hence we have to manually trim it.
             downloadParams.mintDoi = grailsApplication.config.getProperty('doi.mintDoi', Boolean, false)
@@ -117,12 +116,14 @@ class DownloadController {
             downloadParams.hubName = grailsApplication.config?.info?.app?.description
             // perform the download
             def json = downloadService.triggerDownload(downloadParams)
-            log.debug "json = ${json}"
             chain (action:'confirm', model: [
                     isQueuedDownload: true,
                     downloadParams: downloadParams,
                     json: json // Map
-            ], params:[searchParams: downloadParams.searchParams, targetUri: downloadParams.targetUri, downloadType: downloadParams.downloadType])
+            ], params:[
+                    searchParams: downloadParams.searchParams,
+                    targetUri: downloadParams.targetUri,
+                    downloadType: downloadParams.downloadType])
         } else if (downloadParams.downloadType == DownloadType.CHECKLIST.type) {
             // Checklist download
             def extraParamsString = "&facets=species_guid&lookup=true&counts=true&lists=true"
@@ -131,7 +132,10 @@ class DownloadController {
                     isChecklist: true,
                     downloadParams: downloadParams,
                     downloadUrl: grailsApplication.config.downloads.checklistDownloadUrl + downloadParams.biocacheDownloadParamString() + extraParamsString
-            ], params:[searchParams: downloadParams.searchParams, targetUri: downloadParams.targetUri, downloadType: downloadParams.downloadType])
+            ], params: [
+                    searchParams: downloadParams.searchParams,
+                    targetUri: downloadParams.targetUri,
+                    downloadType: downloadParams.downloadType])
         } else if (downloadParams.downloadType == DownloadType.FIELDGUIDE.type) {
             // Field guide download
             def extraParamsString = "&facets=species_guid"
