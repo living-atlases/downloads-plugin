@@ -86,7 +86,9 @@ class DownloadController {
             Map customSections = grailsApplication.config.getRequiredProperty("downloads.customSections", Map).clone()
             // work-around for mixing groovy and property files for config values see issue #53
             List miscItems = grailsApplication.config.getProperty("downloads.customSections.misc", List, [])
-            customSections.misc = miscItems // replace with sanitised version via getProperty()
+            if (miscItems) {
+                customSections.misc = miscItems  // replace with sanitised version via getProperty()
+            }
             //add preselected layer selection to "SPATIAL INTERSECTIONS"
             def mandatory = grailsApplication.config.downloads.mandatoryFields.clone()
             if (downloadParams.layers) {
