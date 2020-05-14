@@ -69,6 +69,9 @@ class DownloadService {
                         downloadParams.includeMisc = true
                     } else if (it == "selectedLayers") {
                         //already added to extra
+                    } else if (it =~ /^dr\d+/) {
+                        // species list DR
+                        downloadParams.extra = (downloadParams.extra) ? "${downloadParams.extra},${it}" : it
                     } else {
                         throw new Exception("Custom field class not recognised: ${it}")
                     }
