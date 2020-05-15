@@ -61,7 +61,7 @@ downloads {
         taxon = "classs:Taxon"
         measurementOrFact = "classs:MeasurementOrFact"
         conservationStatus = ".*Conservation"
-        otherTraits = "species_group%7species_subgroup"
+        otherTraits = "species_group%7cspecies_subgroup"
         environmentalLayers = "name:el[0-9]*"
         contextualLayers = "name:cl[0-9]*"
         qualityAssertions = "assertion"
