@@ -56,6 +56,8 @@ class DownloadParams implements Validateable {
     String customHeader = ""
     Boolean mintDoi = false
 
+    List<String> qualityFiltersInfo = []
+
     @Override
     public String toString() {
         Map paramsMap = mapForPropsWithExcludeList()
