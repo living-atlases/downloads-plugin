@@ -26,6 +26,7 @@ import org.grails.web.util.WebUtils
 @Slf4j
 class DownloadParams implements Validateable {
     String searchParams // q, fq and qc params as query string, URI encoded when sent from browser
+    String returnParams
     String targetUri // path to page calling the download form (so we can return to that page after download complete)
     String downloadType // records, checklist or field guide TODO put in an Enum?
     String downloadFormat // full-dwc, legacy, custom TODO put in an Enum?

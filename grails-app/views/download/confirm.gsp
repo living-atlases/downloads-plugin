@@ -110,7 +110,7 @@
                         </p>
                         <p>&nbsp;</p>
                     </div>
-                    <a href="${downloadParams.targetUri}${downloadParams.searchParams}" class="btn btn-primary btn-block margin-bottom-1 font-xxsmall"
+                    <a href="${downloadParams.targetUri}${downloadParams.returnParams ?: downloadParams.searchParams}" class="btn btn-primary btn-block margin-bottom-1 font-xxsmall"
                            type="button"><g:message code="download.confirm.returnToSearch" default="Return to search results"/></a>
                     <g:if test="${isQueuedDownload && json}">
                         <button class="btn btn-link btn-block margin-bottom-1" data-toggle="modal" data-target="#downloadUrlModal"><g:message code="download.confirm.rawUrlBtn" default="View the raw download URL"/></button>
