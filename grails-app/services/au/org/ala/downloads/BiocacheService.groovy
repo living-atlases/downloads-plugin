@@ -113,7 +113,7 @@ class BiocacheService {
             fields.addAll(fieldsMap.get(it))
         }
 
-        grailsApplication.config.downloads.uidField + ',' + orderFieldsByDwC(fields).join(",") // comma-separated string
+        grailsApplication.config.getProperty('downloads.dwcExtraFields', String, "") + ',' + orderFieldsByDwC(fields).join(",") // comma-separated string
     }
 
     /**

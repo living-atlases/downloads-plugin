@@ -80,7 +80,7 @@ downloads.contextualLayers = ["cl_p"]
 downloads.legacy.defaultFields = "id,data_resource_uid,data_resource,license,catalogue_number,taxon_concept_lsid,raw_taxon_name,raw_common_name,taxon_name,rank,common_name,kingdom,phylum,class,order,family,genus,species,subspecies,institution_code,collection_code,locality,raw_latitude,raw_longitude,raw_datum,latitude,longitude,coordinate_precision,coordinate_uncertainty,country,state,cl959,min_elevation_d,max_elevation_d,min_depth_d,max_depth_d,individual_count,recorded_by,year,month,day,verbatim_event_date,basis_of_record,raw_basis_of_record,sex,preparations,information_withheld,data_generalizations,outlier_layer,taxonomic_kosher,geospatial_kosher"
 downloads.mandatoryFields = ["recordLevelTerms","occurrence"]
 downloads.excludeFields = ""
-downloads.uidField = "row_key" // It was "uuid" for biocache 1.9.x
+downloads.dwcExtraFields = "data_resource_uid" // It was "uuid" for biocache 1.9.x
 
 downloads.fieldguide.species.max = 1000
 downloads.maxRecords = 1000000

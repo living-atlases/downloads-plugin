@@ -52,7 +52,7 @@ class DownloadService {
                 triggerOfflineDownload(downloadParams)
             } else if (downloadParams.downloadFormat == DownloadFormat.CUSTOM.format) {
                 // Custom download
-                List<String> customFields = [grailsApplication.config.downloads.uidField]
+                List<String> customFields = [grailsApplication.config.downloads.dwcExtraFields]
                 downloadParams.customClasses.each {
                     log.debug "classs = ${it}"
 
