@@ -172,6 +172,26 @@
     </g:if>
     });
 
+    function i18nstatus(status) {
+        switch (status) {
+            case "invalidId":
+                return "<g:message code="download.confirm.status.invalidId"/>";
+            case "unavailable":
+                return "<g:message code="download.confirm.status.unavailable"/>";
+            case "failed":
+                return "<g:message code="download.confirm.status.failed"/>";
+            case "skipped":
+                return "<g:message code="download.confirm.status.skipped"/>";
+            case "finished":
+                return "<g:message code="download.confirm.status.finished"/>";
+            case "running":
+                return "<g:message code="download.confirm.status.running"/>";
+            case "inQueue":
+                return "<g:message code="download.confirm.status.inQueue"/>";
+        }
+        return status;
+    }
+
     /**
      * Check offline download statusUrl and update UI, recursively
      *
@@ -188,25 +208,25 @@
             if (json.statusUrl && maxTries > tries) {
                 tries++;
 
-                $('#queueStatus').html("Download is <span>" + json.status +"</span>");
+                $('#queueStatus').html("<g:message code="download.confirm.download.is"/> <span><b>" + i18nstatus(json.status) +"</b></span>");
                 $('.progress').addClass('progress-striped');
 
                 // setTimeout(function(){
                     $.getJSON(json.statusUrl, function(data) {
                         updateStatus(data);
                     }).fail(function( jqxhr, textStatus, error ) {
-                        $('#queueStatus').html( "Request Failed: " + textStatus + ", " + error );
+                        $('#queueStatus').html( "<g:message code="download.confirm.request.failed"/>: " + textStatus + ", " + error );
                     });
                 // }, timeout);
             } else if (json.downloadUrl) {
-                $('#queueStatus').html("<a class='btn btn-primary' href='" + json.downloadUrl + "'><i class='fa fa-download'></i> Download now</a>");
+                $('#queueStatus').html("<a class='btn btn-primary' href='" + json.downloadUrl + "'><i class='fa fa-download'></i> <g:message code="download.confirm.download.now"/></a>");
                 $('.progress').removeClass('progress-striped');
                 $('.progress').hide();
-                $('.lead').html("Your download is ready.");
+                $('.lead').html("<g:message code="download.confirm.download.ready"/>");
             } else if (json.status == "inQueue" || json.status == "running") {
                 $('#queueStatus').html(""); //ignore
             } else {
-                $('#queueStatus').html("There was a problem getting the status: <code>" + json.message + "</code> (" + json.status + ")");
+                $('#queueStatus').html("<g:message code="download.confirm.get.status.problem"/>: <code>" + json.message + "</code> (" + json.status + ")");
                 $('.progress').removeClass('progress-striped');
             }
         }
