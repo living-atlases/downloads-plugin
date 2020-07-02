@@ -90,6 +90,7 @@ downloads.termsOfUseUrl = "https://www.ala.org.au/about-the-atlas/terms-of-use/#
 downloads.defaultDownloadFormat = "dwc"
 downloads.includeRawDwcFields = "true" // keep it a string to be consistent with properties file
 downloads.gaCustomData = true  // Google Analytics custom dimensions data - set to empty for non-ALA installations
+downloads.refresh.confirm.maxTimeout = 20
 
 doiService.baseUrl = "https://doi.ala.org.au"
 doiService.doiResolverUrl = "https://doi.org/"
