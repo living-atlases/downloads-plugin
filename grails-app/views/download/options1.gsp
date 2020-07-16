@@ -127,7 +127,9 @@
                                             <div class="col-sm-8 radio">
                                                 <g:each in="${au.org.ala.downloads.FileType.values()}" var="ft">
 %{--                                                %{-- Skip Shapefile type --}%
-                                                    <g:if test="${!(grailsApplication.config.getProperty("filetype.shapefile.disable", boolean) && ft.type == au.org.ala.downloads.FileType.SHAPE.type )}">
+                                                    <g:if test="${!((grailsApplication.config.getProperty("filetype.shapefile.disable", boolean) ||
+                                                                     grailsApplication.config.getProperty("filetype.shapefile.hidden", boolean)) &&
+                                                                     ft.type == au.org.ala.downloads.FileType.SHAPE.type )}">
                                                         <div class="">
                                                             <label>
                                                                 <input id="fileType_${ft.type}" type="radio" name="fileType" class=""
@@ -138,7 +140,7 @@
                                                         </div>
                                                     </g:if>
                                                 </g:each>
-                                                <g:if test="${grailsApplication.config.getProperty("filetype.shapefile.disable", boolean)}">
+                                                <g:if test="${grailsApplication.config.getProperty("filetype.shapefile.disable", boolean) && !grailsApplication.config.getProperty("filetype.shapefile.hidden", boolean)}">
                                                     %{-- Indicate shapefile is deprecated and will be removed --}%
                                                     <div class="">
                                                         <label>
