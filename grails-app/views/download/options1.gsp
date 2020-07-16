@@ -250,6 +250,36 @@
                                 </div>
                             </div>
 
+                            <g:if test="${askForEmail}">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="contrib-stats">
+                                        <div class="no-of-questions">
+                                            <div class="survey-details">
+                                                <div class="survey-counter"><strong><i
+                                                        class="fa fa-at color--yellow"></i></strong></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-7">
+                                    <form class="form-inline margin-top-1">
+                                        <div class="form-group">
+                                            <label for="downloadEmail" class="control-label heading-xsmall"><span
+                                                    class="color--mellow-red">*</span><g:message code="download.email"/></label>&nbsp;&nbsp;
+                                            <input type="email" class="form-control" name="downloadEmail" id="downloadEmail"/>
+                                            <p class="help-block"><strong><g:message code="download.field.mandatory"/></strong> <g:message code="download.enter.email.to.receive"/>
+                                            </p>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="col-md-3">
+                                </div>
+                            </div>
+                            </g:if>
+
                             <div class="row">
                                 <div class="col-md-2">
                                     <div class="contrib-stats">
@@ -292,9 +322,10 @@
                                     <div id="errorAlert" class="alert alert-danger alert-dismissible collapse" role="alert">
                                         <button type="button" class="close" onclick="$(this).parent().hide()"
                                                 aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <strong>> <g:message code="download.error"/>:</strong> <g:message code="download.error.msg1"/><span
-                                            id="errorFormat" class="collapse"><g:message code="download.error.msg2"/></span>, <g:message code="download.error.msg3"/>
-
+                                        <strong><g:message code="download.error"/>:</strong>
+                                        <div id="errorType" class="collapse"><g:message code="download.error.please.select.type"/></div>
+                                        <div id="errorEmail" class="collapse"><g:message code="download.error.please.select.email"/></div>
+                                        <div id="errorReason" class="collapse"><g:message code="download.error.please.select.reason"/></div>
                                     </div>
                                     <!-- End Alert Information -->
                                 </div>
@@ -316,6 +347,9 @@
 </div><!-- /.row-fuid  -->
 <g:javascript>
     $( document ).ready(function() {
+
+        var askForEmail = ${askForEmail};
+
         // click event on download type select buttons
         $('a.select-download-type').click(function(e) {
             e.preventDefault(); // its a link so stop any regular link stuff happening
@@ -332,7 +366,8 @@
                     // show type options
                     $('#downloadFormatForm').slideUp();
                 }
-            } else {
+            }
+            else {
                 // not selected
                 $('a.select-download-type').find('span').text('<g:message code="download.select"/>'); // reset any other selected buttons
                 $('a.select-download-type').removeClass('btn-success'); // reset any other selected buttons
@@ -349,7 +384,7 @@
                     $('#downloadFormatForm').slideDown();
                 } else {
                     $('#downloadFormatForm').slideUp();
-                    $('#downloadReason').focus();
+                    $(askForEmail ? '#downloadEmail' : '#downloadReason').focus();
                 }
             }
         });
@@ -361,8 +396,8 @@
         // download format change event
         $('#downloadFormat').on('change', function(e) {
             if ($(this).find(":selected").val()) {
-                // set focus on reason code
-                $('#downloadReason').focus();
+                // set focus on email or reason code
+                $(askForEmail ? '#downloadEmail' : '#downloadReason').focus();
             }
         });
 
@@ -373,8 +408,8 @@
         // file type change event
         $('#fileType').on('change', function(e) {
             if ($(this).find(":selected").val()) {
-                // set focus on reason code
-                $('#downloadReason').focus();
+                // set focus on email or reason code
+                $(askForEmail ? '#downloadEmail' : '#downloadReason').focus();
             }
         });
 
@@ -384,40 +419,44 @@
             // do form validation
             var type = $('.select-download-type.btn-success').attr('id');
             var format = $('input[name=downloadFormat]:checked').val();
+            var email = askForEmail ? $('input[name=downloadEmail]').val() : "";
             var reason = $('#downloadReason').find(":selected").val();
             var file = $('#file').val();
-            if (type) {
-                type = type.replace(/^select-/,''); // remove prefix
-                $('#errorAlert').hide();
 
-                if (type == "${au.org.ala.downloads.DownloadType.RECORDS.type}") {
-                    // check for format
-                    if (!format) {
-                        $('#downloadFormat').focus();
-                        $('#errorAlert').show();
-                        $('#errorFormat').show();
-                        return false;
-                    } else {
-                        $('#errorFormat').hide();
-                        $('#errorAlert').hide();
-                    }
-                }
+            var hasAlert = false;
+            $('#errorType').hide();
+            $('#errorEmail').hide();
+            $('#errorReason').hide();
 
-                if (!reason) {
-                    $('#errorAlert').show();
-                    $('#downloadReason').focus();
-                } else {
-                    // go to next screen
-                    $('#errorAlert').hide();
-                    var sourceTypeId = "${downloads.getSourceId()}";
-                    var layers = "${defaults.layers}";
-                    var layersServiceUrl = "${defaults.layersServiceUrl}";
-                    var customHeader = "${defaults.customHeader}";
-                    var fileType = $('input[name=fileType]:checked').val();
-                    window.location = "${g.createLink(action: 'options2')}?searchParams=${searchParams.encodeAsURL()}&returnParams=${returnParams.encodeAsURL()}&targetUri=${targetUri.encodeAsURL()}${qualityFiltersInfo ? '&' : ''}${qualityFiltersInfo.collect { 'qualityFiltersInfo=' + it.encodeAsURL() }.join('&')}&downloadType=" + type + "&reasonTypeId=" + reason + "&sourceTypeId=" + sourceTypeId + "&downloadFormat=" + format + "&file=" + file + "&layers=" + layers + "&customHeader=" + customHeader + "&fileType=" + fileType + "&layersServiceUrl=" + layersServiceUrl;
-                }
-            } else {
+            if (!type) {
+                $('#errorType').show();
+                hasAlert = true;
+            }
+            if (askForEmail && !email) {
+                $('#errorEmail').show();
+                $('#downloadEmail').focus();
+                hasAlert = true;
+            }
+            if (!reason) {
+                $('#errorReason').show();
+                $('#downloadReason').focus();
+                hasAlert = true;
+            }
+
+            if (hasAlert) {
                 $('#errorAlert').show();
+            }
+            else {
+                $('#errorAlert').hide();
+                type = type.replace(/^select-/,''); // remove prefix
+
+                // go to next screen
+                var sourceTypeId = "${downloads.getSourceId()}";
+                var layers = "${defaults.layers}";
+                var layersServiceUrl = "${defaults.layersServiceUrl}";
+                var customHeader = "${defaults.customHeader}";
+                var fileType = $('input[name=fileType]:checked').val();
+                window.location = "${g.createLink(action: 'options2')}?searchParams=${searchParams.encodeAsURL()}&returnParams=${returnParams.encodeAsURL()}&targetUri=${targetUri.encodeAsURL()}${qualityFiltersInfo ? '&' : ''}${qualityFiltersInfo.collect { 'qualityFiltersInfo=' + it.encodeAsURL() }.join('&')}&downloadType=" + type + "&email="+ email +"&reasonTypeId=" + reason + "&sourceTypeId=" + sourceTypeId + "&downloadFormat=" + format + "&file=" + file + "&layers=" + layers + "&customHeader=" + customHeader + "&fileType=" + fileType + "&layersServiceUrl=" + layersServiceUrl;
             }
         });
 
