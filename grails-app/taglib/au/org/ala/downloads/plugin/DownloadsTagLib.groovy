@@ -211,6 +211,13 @@ class DownloadsTagLib {
         out << html
     }
 
+    def wrapLink = { attrs ->
+        String link = attrs.link
+        if (link) {
+            out << "<a href='${link}' target='_blank'>Wiki</a>"
+        }
+    }
+
     def sanitiseRawContent = { attrs ->
         String content = attrs.content
         try {
