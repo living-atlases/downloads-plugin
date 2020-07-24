@@ -115,7 +115,11 @@
                     <td>${fld.classs}</td>
                     <td>${fld.description}</td>
                     <td>${fld.downloadDescription}</td>
-                    <td>${downloads.wrapLink(link:fld.furtherInfo)}</td>
+                    <td>
+                    <g:if test="${fld.furtherInfo}">
+                        <a href="${fld.furtherInfo}" target="_blank">Wiki</a>
+                    </g:if>
+                    </td>
                     <td>
                         <g:if test="${fld.indexed}"><span class="label label-info tooltips" title="${message(code:"downloads.fields.tooltip.indexed")}">I</span></g:if>
                         <g:if test="${fld.stored}"><span class="label label-success tooltips" title="${message(code:"downloads.fields.tooltip.stored")}">S</span></g:if>
