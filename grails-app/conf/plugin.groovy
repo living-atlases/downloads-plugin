@@ -96,4 +96,5 @@ doiService.baseUrl = "https://doi.ala.org.au"
 doiService.doiResolverUrl = "https://doi.org/"
 
 filetype.shapefile.disable = true // set to false, to revert to previous behaviour - will probably/eventually be deprecated in biocache-service
+filetype.shapefile.hidden = false
 shapefile.kb.url = "https://support.ala.org.au/support/solutions/articles/6000226357"
