@@ -116,8 +116,8 @@
                     <td>${fld.description}</td>
                     <td>${fld.downloadDescription}</td>
                     <td>
-                    <g:if test="${fld.furtherInfo}">
-                        <a href="${fld.furtherInfo}" target="_blank">Wiki</a>
+                    <g:if test="${fld.infoUrl}">
+                        <a href="${fld.infoUrl}" target="_blank">Wiki</a>
                     </g:if>
                     </td>
                     <td>
