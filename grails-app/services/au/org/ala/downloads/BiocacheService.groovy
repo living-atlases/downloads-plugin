@@ -58,7 +58,7 @@ class BiocacheService {
             throw new RuntimeException(msg)
         }
 
-        fields
+        fields.findAll({ !getExcludedFields().contains(it.name) })
     }
 
     @Cacheable('longTermCache')
@@ -173,5 +173,10 @@ class BiocacheService {
         }
 
         dwcFieldsOrdered
+    }
+
+    List getExcludedFields() {
+        String excludedFields = grailsApplication.config.downloads.excludeFields?: ""
+        excludedFields.split(",")
     }
 }
