@@ -44,6 +44,8 @@ class DownloadController {
         log.debug "downloadParams = ${downloadParams.toString()}"
         downloadParams.file = DownloadType.RECORDS.type + "-" + new Date().format("yyyy-MM-dd")
 
+        boolean askForEmail = (authService?.getEmail() == null);
+
         if (downloadParams.searchParams) {
             render (view:'options1', model: [
                     searchParams: downloadParams.searchParams,
@@ -52,6 +54,7 @@ class DownloadController {
                     targetUri: downloadParams.targetUri,
                     filename: downloadParams.file,
                     totalRecords: downloadParams.totalRecords,
+                    askForEmail: askForEmail,
                     defaults: [ sourceTypeId: downloadParams.sourceTypeId,
                                 downloadType: downloadParams.downloadType,
                                 downloadFormat: downloadParams.downloadFormat,
