@@ -76,7 +76,7 @@ class DownloadService {
                         throw new Exception("Custom field class not recognised: ${it}")
                     }
                 }
-                downloadParams.fields = customFields.join(",")
+                downloadParams.fields = customFields.findAll({it != null && it != ""}).join(",")
                 triggerOfflineDownload(downloadParams)
             } else {
                 def msg = "Download records format not recognised: ${downloadParams.downloadFormat}"
