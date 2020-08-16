@@ -49,8 +49,6 @@ class DownloadController {
         if (downloadParams.searchParams) {
             render (view:'options1', model: [
                     searchParams: downloadParams.searchParams,
-                    returnParams: downloadParams.returnParams,
-                    qualityFiltersInfo: downloadParams.qualityFiltersInfo,
                     targetUri: downloadParams.targetUri,
                     filename: downloadParams.file,
                     totalRecords: downloadParams.totalRecords,
