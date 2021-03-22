@@ -46,7 +46,7 @@ class DownloadService {
             } else if (downloadParams.downloadFormat == DownloadFormat.LEGACY.format) {
                 // Legacy download
                 downloadParams.extra = grailsApplication.config.biocache.downloads.extra?: ""
-                downloadParams.fields = grailsApplication.config.biocache.downloads.legacy.defaultFields?: ""
+                downloadParams.fields = grailsApplication.config.downloads.legacy.defaultFields?: ""
                 downloadParams.dwcHeaders = false
                 log.debug "downloadParams = ${downloadParams} | ${grailsApplication.config.biocache.downloads.extra}"
                 triggerOfflineDownload(downloadParams)
