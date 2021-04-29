@@ -48,6 +48,7 @@
         }
         textarea {
             width: 100%;
+            height: 135px;
         }
         .progress {
             height: 12px;
